@@ -26,16 +26,8 @@ const Display = (props) => {
                         <p>Price : {eaProd.price}</p>
                         <p>Description : {eaProd.description}</p>
                         {/* link paths need to match with paths in App.js */}
-                        <Link
-                            className="btn btn-success"
-                            to={`/findProdById/${eaProd._id}`}>
-                            View
-                        </Link>
-                        <Link
-                            className="btn btn-warning"
-                            to={`/edit/${eaProd._id}`}>
-                            Edit
-                        </Link>
+                        <Link className="btn btn-success" to={`/findProdById/${eaProd._id}`}>View</Link>
+                        <Link className="btn btn-warning" to={`/edit/${eaProd._id}`}>Edit</Link>
                     </div>
                 ))}
             </div>
