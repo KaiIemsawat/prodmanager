@@ -17,6 +17,22 @@ const Display = (props) => {
                 console.log(err);
             });
     }, []);
+
+    const deleteHandler = (id) => {
+        console.log(id);
+        axios
+            .delete(`http://localhost:8000/api/deleteProdById/${id}`)
+            .then((resp) => {
+                console.log(resp);
+                const updateProdList = prodList.filter(
+                    (prod) => prod._id !== id
+                );
+                setProdList(updateProdList);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     return (
         <div>
             <div>
@@ -26,8 +42,22 @@ const Display = (props) => {
                         <p>Price : {eaProd.price}</p>
                         <p>Description : {eaProd.description}</p>
                         {/* link paths need to match with paths in App.js */}
-                        <Link className="btn btn-success" to={`/findProdById/${eaProd._id}`}>View</Link>
-                        <Link className="btn btn-warning" to={`/edit/${eaProd._id}`}>Edit</Link>
+                        <Link
+                            className="btn btn-success"
+                            to={`/findProdById/${eaProd._id}`}>
+                            View
+                        </Link>
+                        <Link
+                            className="btn btn-warning"
+                            to={`/edit/${eaProd._id}`}>
+                            Edit
+                        </Link>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => deleteHandler(eaProd._id)}>
+                            {" "}
+                            Delete
+                        </button>
                     </div>
                 ))}
             </div>
